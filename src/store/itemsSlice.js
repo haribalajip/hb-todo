@@ -11,6 +11,10 @@ const itemsSlice = createSlice({
     addItem(state, { payload }) {
       state.push(payload);
       return state;
+    },
+
+    deleteAll(state) {
+      return [];
     }
   }
 });

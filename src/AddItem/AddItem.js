@@ -12,12 +12,18 @@ const AddItem = () => {
   const handleAddNote = () => {
     let payload = { name: inputValue };
     dispatch(itemsSliceActions.addItem(payload));
+    setInputValue('')
+  }
+
+  const handleDeleteAll = () => {
+    dispatch(itemsSliceActions.deleteAll())
   }
 
   return(
     <div>
       <input value={inputValue} placeholder='Enter your item' onChange={handleInputChange}></input>
       <button onClick={handleAddNote}>Add note</button>
+      <button onClick={handleDeleteAll}>Delete All</button>
     </div>
     
   )
