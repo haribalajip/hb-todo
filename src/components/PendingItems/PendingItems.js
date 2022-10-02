@@ -17,7 +17,7 @@ const PendingItems = () => {
       {
         items.map(item => {
           return (
-            <Item id={item.id} name={item.name}></Item>
+            <Item item={item} key={item.id}></Item>
           )
         })
       }

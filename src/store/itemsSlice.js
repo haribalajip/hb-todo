@@ -16,6 +16,13 @@ const itemsSlice = createSlice({
 
     deleteAll(state) {
       return [];
+    },
+
+    deleteItem(state, { payload }) {
+      state = state.filter(item =>{
+        return item.id != payload;
+      });
+      return state;
     }
   }
 });
@@ -31,6 +38,21 @@ export const fetchItems = (dispatch) => {
     }
   }
 };
+
+export const deleteItemReq = (dispatch, id) => {
+  return async() => {
+    try {
+      let response = await fetch(`https://632fc772591935f3c8852c54.mockapi.io/tasks/${id}`);
+      if (response.ok) {
+        dispatch(itemsSliceActions.deleteItem(id));
+      }
+    } catch(e) {
+      alert('Could not fetch tasks. Try again.');
+    }
+  }
+};
+
+
 
 export const itemsSliceActions = itemsSlice.actions;
 export const itemsSliceReducer = itemsSlice.reducer;
