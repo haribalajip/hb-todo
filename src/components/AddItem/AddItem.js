@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { itemsSliceActions } from "../store/itemsSlice";
+import { itemsSliceActions } from "../../store/itemsSlice";
 
 const AddItem = () => {
   const [inputValue, setInputValue] = useState('');
@@ -9,7 +9,7 @@ const AddItem = () => {
     setInputValue(e.target.value);
   }
 
-  const handleAddNote = () => {
+  const handleAddItem = () => {
     let payload = { name: inputValue };
     dispatch(itemsSliceActions.addItem(payload));
     setInputValue('')
@@ -22,7 +22,7 @@ const AddItem = () => {
   return(
     <div>
       <input value={inputValue} placeholder='Enter your item' onChange={handleInputChange}></input>
-      <button onClick={handleAddNote}>Add note</button>
+      <button onClick={handleAddItem}>Add note</button>
       <button onClick={handleDeleteAll}>Delete All</button>
     </div>
     

@@ -1,8 +1,8 @@
 import './App.css';
-import PendingItems from './PendingItems/PendingItems';
+import PendingItems from './components/PendingItems/PendingItems';
 import { Provider } from 'react-redux';
 import { store } from './store/index'
-import AddItem from './AddItem/AddItem';
+import AddItem from './components/AddItem/AddItem';
 
 function App() {
   return (
