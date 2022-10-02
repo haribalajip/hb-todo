@@ -14,10 +14,6 @@ const itemsSlice = createSlice({
       return state;
     },
 
-    deleteAll(state) {
-      return [];
-    },
-
     deleteItem(state, { payload }) {
       state = state.filter(item =>{
         return item.id != payload;
@@ -46,6 +42,25 @@ export const deleteItemReq = (dispatch, id) => {
       if (response.ok) {
         dispatch(itemsSliceActions.deleteItem(id));
       }
+    } catch(e) {
+      alert('Could not fetch tasks. Try again.');
+    }
+  }
+};
+
+export const addItemReq = (dispatch, item) => {
+  return async() => {
+    try {
+      let response = await fetch(`https://632fc772591935f3c8852c54.mockapi.io/tasks`,
+      {
+        method: 'POST',
+        body: JSON.stringify(item),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      let itemFromServer = await response.json();
+      dispatch(itemsSliceActions.addItem(itemFromServer));
     } catch(e) {
       alert('Could not fetch tasks. Try again.');
     }
