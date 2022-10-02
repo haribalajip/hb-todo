@@ -1,24 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import PendingItems from './components/PendingItems/PendingItems';
+import { Provider } from 'react-redux';
+import { store } from './store/index'
+import AddItem from './components/AddItem/AddItem';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <header>To do</header>
+        <AddItem></AddItem>
+        <PendingItems></PendingItems>
+      </div>
+    </Provider>
   );
 }
 
