@@ -4,7 +4,8 @@ const itemsSlice = createSlice({
   name: 'items',
   initialState,
   reducers:{
-    getItems(state, { payload }) {
+    setItems(state, { payload }) {
+      state = [...payload]
       return state;
     },
 
@@ -18,6 +19,18 @@ const itemsSlice = createSlice({
     }
   }
 });
+
+export const fetchItems = (dispatch) => {
+  return async() => {
+    try {
+      let response = await fetch('https://632fc772591935f3c8852c54.mockapi.io/tasks');
+      let tasks = await response.json();
+      dispatch(itemsSliceActions.setItems(tasks));
+    } catch(e) {
+      alert('Could not fetch tasks. Try again.');
+    }
+  }
+};
 
 export const itemsSliceActions = itemsSlice.actions;
 export const itemsSliceReducer = itemsSlice.reducer;
