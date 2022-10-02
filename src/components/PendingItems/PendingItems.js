@@ -13,14 +13,16 @@ const PendingItems = () => {
 
   const items = useSelector(state => state.items);
   return(
-    <div> 
-      {
-        items.map(item => {
-          return (
-            <Item item={item} key={item.id}></Item>
-          )
-        })
-      }
+    <div className="todo-list"> 
+      <div>
+        {
+          items.map(item => {
+            return (
+              <Item item={item} key={item.id}></Item>
+            )
+          })
+        }
+      </div>
     </div>
   )
 }

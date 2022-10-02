@@ -16,8 +16,8 @@ const AddItem = () => {
   }
 
   return(
-    <div>
-      <input value={inputValue} placeholder='Enter your item' onChange={handleInputChange}></input>
+    <div className="add-item">
+      <input className="mg-r-10" value={inputValue} placeholder='Enter your item' onChange={handleInputChange}></input>
       <button onClick={handleAddItem}>Add note</button>
     </div>
     
