@@ -42,7 +42,7 @@ export const fetchItems = (dispatch) => {
 export const deleteItemReq = (dispatch, id) => {
   return async() => {
     try {
-      let response = await fetch(`https://632fc772591935f3c8852c54.mockapi.io/tasks/${id}`);
+      let response = await fetch(`https://632fc772591935f3c8852c54.mockapi.io/tasks/${id}`, { method: 'DELETE' });
       if (response.ok) {
         dispatch(itemsSliceActions.deleteItem(id));
       }
@@ -51,7 +51,6 @@ export const deleteItemReq = (dispatch, id) => {
     }
   }
 };
-
 
 
 export const itemsSliceActions = itemsSlice.actions;
