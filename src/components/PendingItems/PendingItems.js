@@ -8,7 +8,7 @@ const PendingItems = () => {
 
   useEffect(() => {
     dispatch(fetchItems(dispatch))
-  }, [])
+  }, [dispatch])
 
 
   const items = useSelector(state => state.items);
