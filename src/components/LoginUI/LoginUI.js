@@ -33,7 +33,7 @@ const LoginUI = () => {
     if (!loggedIn) {
       setupSigninUI(process.env.REACT_APP_FIREBASE_API_KEY);
     }
-  }, []);
+  }, [loggedIn]);
   return <div id="loginUI"></div>;
 };
 
