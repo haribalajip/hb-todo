@@ -1,16 +1,27 @@
-import './App.css';
-import PendingItems from './components/PendingItems/PendingItems';
-import { Provider } from 'react-redux';
-import { store } from './store/index'
-import AddItem from './components/AddItem/AddItem';
+import "./App.css";
+import { Provider } from "react-redux";
+import { store } from "./store/index";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Items from "./routes/Items";
+import Root from "./routes/Root";
+import Login from "./routes/Login";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      { path: "items", element: <Items /> },
+      { path: "login", element: <Login /> },
+    ],
+  },
+]);
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <header>To do</header>
-        <AddItem></AddItem>
-        <PendingItems></PendingItems>
+        <RouterProvider router={router} />
       </div>
     </Provider>
   );
