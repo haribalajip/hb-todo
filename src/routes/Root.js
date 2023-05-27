@@ -12,7 +12,7 @@ const Root = () => {
     } else {
       navigate("login");
     }
-  }, []);
+  }, [userLoggedIn, navigate]);
   return (
     <div>
       <h1>To do</h1>
