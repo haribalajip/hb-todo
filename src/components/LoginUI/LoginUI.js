@@ -13,7 +13,7 @@ const setupSigninUI = (apiKey) => {
     callbacks: {
       signInSuccessWithAuthResult: (authResult, redirectUrl) => {
         console.log({ authResult });
-        location.hash = "/items";
+        location.pathname = "items";
         localStorage.setItem("uid", authResult.user.uid);
       },
     },

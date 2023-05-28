@@ -1,12 +1,12 @@
 import "./App.css";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Items from "./routes/Items";
 import Root from "./routes/Root";
 import Login from "./routes/Login";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
