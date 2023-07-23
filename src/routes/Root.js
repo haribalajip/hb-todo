@@ -2,6 +2,9 @@ import { Outlet, useNavigate } from "react-router";
 import { useEffect } from "react";
 import { isLoggedIn } from "../utils/loginUtil";
 import LogoutUI from "../components/LogoutUI/LogoutUI";
+import { setUpFBApp } from "../utils/generalUtil";
+
+setUpFBApp();
 
 const Root = () => {
   let navigate = useNavigate();

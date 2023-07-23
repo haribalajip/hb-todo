@@ -15,7 +15,6 @@ const setupSigninUI = (apiKey) => {
     apiKey,
     authDomain: "hb-todo-react.firebaseapp.com",
   };
-  firebase.initializeApp(config);
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   return ui;
 };
