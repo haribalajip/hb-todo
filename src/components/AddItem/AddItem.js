@@ -13,7 +13,6 @@ const AddItem = () => {
     let item = {
       name: inputValue,
       isCompleted: false,
-      uid: getCurrentUserId(),
     };
     dispatch(addItemReq(dispatch, item));
     setInputValue("");
