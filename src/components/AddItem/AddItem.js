@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItemReq } from "../../store/itemsSlice";
-import { getCurrentUserId } from "../../utils/loginUtil";
 const AddItem = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
