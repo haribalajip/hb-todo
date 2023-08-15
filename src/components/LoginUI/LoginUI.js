@@ -10,11 +10,7 @@ const uiConfig = {
   signInFlow: "popup",
   signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
 };
-const setupSigninUI = (apiKey) => {
-  var config = {
-    apiKey,
-    authDomain: "hb-todo-react.firebaseapp.com",
-  };
+const setupSigninUI = () => {
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   return ui;
 };
