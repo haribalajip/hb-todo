@@ -1,5 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getCurrentUserId } from "../utils/loginUtil";
+import {
+  getFirestore,
+  doc,
+  getDocs,
+  addDoc,
+  collection,
+  deleteDoc,
+} from "firebase/firestore";
+
 const initialState = [];
 const itemsSlice = createSlice({
   name: "items",
@@ -27,13 +36,17 @@ const itemsSlice = createSlice({
 export const fetchItems = (dispatch) => {
   return async () => {
     try {
-      let response = await fetch(
-        "https://632fc772591935f3c8852c54.mockapi.io/tasks"
+      const db = getFirestore(window.firebaseApp);
+      let taskDocs = await getDocs(
+        collection(db, "users", getCurrentUserId(), "tasks")
       );
-      let tasks = await response.json();
-      tasks = tasks.filter((task) => task.uid === getCurrentUserId());
+      let tasks = [];
+      taskDocs.forEach((taskDoc) =>
+        tasks.push({ id: taskDoc.id, ...taskDoc.data() })
+      );
       dispatch(itemsSliceActions.setItems(tasks));
     } catch (e) {
+      console.log(e);
       alert("Could not fetch tasks. Try again.");
     }
   };
@@ -42,13 +55,9 @@ export const fetchItems = (dispatch) => {
 export const deleteItemReq = (dispatch, id) => {
   return async () => {
     try {
-      let response = await fetch(
-        `https://632fc772591935f3c8852c54.mockapi.io/tasks/${id}`,
-        { method: "DELETE" }
-      );
-      if (response.ok) {
-        dispatch(itemsSliceActions.deleteItem(id));
-      }
+      const db = getFirestore(window.firebaseApp);
+      await deleteDoc(doc(db, "users", getCurrentUserId(), "tasks", id));
+      dispatch(itemsSliceActions.deleteItem(id));
     } catch (e) {
       alert("Could not fetch tasks. Try again.");
     }
@@ -58,19 +67,16 @@ export const deleteItemReq = (dispatch, id) => {
 export const addItemReq = (dispatch, item) => {
   return async () => {
     try {
-      let response = await fetch(
-        `https://632fc772591935f3c8852c54.mockapi.io/tasks`,
-        {
-          method: "POST",
-          body: JSON.stringify(item),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+      const db = getFirestore(window.firebaseApp);
+
+      const taskDoc = await addDoc(
+        collection(db, "users", getCurrentUserId(), "tasks"),
+        item
       );
-      let itemFromServer = await response.json();
-      dispatch(itemsSliceActions.addItem(itemFromServer));
+
+      dispatch(itemsSliceActions.addItem({ id: taskDoc.id, ...item }));
     } catch (e) {
+      console.log(e);
       alert("Could not fetch tasks. Try again.");
     }
   };
