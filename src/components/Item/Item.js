@@ -15,7 +15,12 @@ const Item = (props) => {
     <div className="todo-item mg-b-10">
       <div className="mg-r-10">{props.item.name}</div>
       <span>
-        <button onClick={deleteItem.bind(this, props.item.id)}>Delete</button>
+        <button
+          className="mg-r-10"
+          onClick={deleteItem.bind(this, props.item.id)}
+        >
+          Delete
+        </button>
         {!props.item.isCompleted && (
           <button onClick={markAsComplete.bind(this, props.item)}>
             Mark complete
