@@ -4,6 +4,7 @@ import {
   getFirestore,
   doc,
   getDocs,
+  updateDoc,
   addDoc,
   collection,
   deleteDoc,
@@ -27,6 +28,16 @@ const itemsSlice = createSlice({
     deleteItem(state, { payload }) {
       state = state.filter((item) => {
         return item.id !== payload;
+      });
+      return state;
+    },
+
+    updateItem(state, { payload }) {
+      state = state.map((item) => {
+        if (item.id === payload.id) {
+          return payload;
+        }
+        return item;
       });
       return state;
     },
@@ -82,5 +93,17 @@ export const addItemReq = (dispatch, item) => {
   };
 };
 
+export const markDoneReq = (dispatch, item) => {
+  return async () => {
+    try {
+      const db = getFirestore(window.firebaseApp);
+      const docRef = doc(db, "users", getCurrentUserId(), "tasks", item.id);
+      await updateDoc(docRef, { isCompleted: true });
+      dispatch(itemsSliceActions.updateItem({ ...item, isCompleted: true }));
+    } catch (e) {
+      alert("Could not update the task. Try again.");
+    }
+  };
+};
 export const itemsSliceActions = itemsSlice.actions;
 export const itemsSliceReducer = itemsSlice.reducer;
