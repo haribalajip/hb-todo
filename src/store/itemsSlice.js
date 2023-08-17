@@ -74,17 +74,17 @@ export const fetchItems = (dispatch) => {
   };
 };
 
-export const deleteItemReq = (dispatch, id) => {
+export const deleteItemReq = ({ dispatch, id, setIsLoading }) => {
   return async () => {
     try {
-      dispatch(itemsSliceActions.toggleListLoading(true));
+      setIsLoading(true);
       const db = getFirestore(window.firebaseApp);
       await deleteDoc(doc(db, "users", getCurrentUserId(), "tasks", id));
       dispatch(itemsSliceActions.deleteItem(id));
     } catch (e) {
       alert("Could not delete tasks. Try again.");
     } finally {
-      dispatch(itemsSliceActions.toggleListLoading(false));
+      setIsLoading(false);
     }
   };
 };
@@ -109,10 +109,10 @@ export const addItemReq = (dispatch, item) => {
   };
 };
 
-export const markDoneReq = (dispatch, item) => {
+export const markDoneReq = ({ dispatch, item, setIsLoading }) => {
   return async () => {
     try {
-      dispatch(itemsSliceActions.toggleListLoading(true));
+      setIsLoading(true);
       const db = getFirestore(window.firebaseApp);
       const docRef = doc(db, "users", getCurrentUserId(), "tasks", item.id);
       await updateDoc(docRef, { isCompleted: true });
@@ -120,7 +120,7 @@ export const markDoneReq = (dispatch, item) => {
     } catch (e) {
       alert("Could not update the task. Try again.");
     } finally {
-      dispatch(itemsSliceActions.toggleListLoading(false));
+      setIsLoading(false);
     }
   };
 };

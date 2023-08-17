@@ -1,17 +1,22 @@
 import { useDispatch } from "react-redux";
 import { deleteItemReq, markDoneReq } from "../../store/itemsSlice";
+import { useState } from "react";
 
 const Item = (props) => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   const deleteItem = (id) => {
-    dispatch(deleteItemReq(dispatch, id));
+    dispatch(deleteItemReq({ dispatch, id, setIsLoading }));
   };
 
   const markAsComplete = (item) => {
-    dispatch(markDoneReq(dispatch, item));
+    dispatch(markDoneReq({ dispatch, item, setIsLoading }));
   };
-  return (
+
+  return isLoading ? (
+    <p>Loading item...</p>
+  ) : (
     <div className="todo-item mg-b-10">
       <div className="mg-r-10">{props.item.name}</div>
       <span>
