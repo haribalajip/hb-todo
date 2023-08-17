@@ -5,26 +5,27 @@ import Item from "../Item/Item";
 const PendingItems = () => {
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    dispatch(fetchItems(dispatch))
-  }, [dispatch])
+    dispatch(fetchItems(dispatch));
+  }, [dispatch]);
 
-
-  const items = useSelector(state => state.items);
-  return(
-    <div className="todo-list"> 
-      <div>
-        {
-          items.map(item => {
-            return (
-              <Item item={item} key={item.id}></Item>
-            )
-          })
-        }
-      </div>
+  const items = useSelector((state) => {
+    return state.todoListItems.items;
+  });
+  const isLoading = useSelector((state) => state.todoListItems.isListLoading);
+  return (
+    <div className="todo-list">
+      {isLoading ? (
+        <p>Loading ...</p>
+      ) : (
+        <div>
+          {items.map((item) => {
+            return <Item item={item} key={item.id}></Item>;
+          })}
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default PendingItems;
