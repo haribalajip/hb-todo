@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import { deleteItemReq, markDoneReq } from "../../store/itemsSlice";
 import { useState } from "react";
-
+import { Table, Button, IconButton } from "@radix-ui/themes";
+import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 const Item = (props) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -14,25 +15,30 @@ const Item = (props) => {
     dispatch(markDoneReq({ dispatch, item, setIsLoading }));
   };
 
-  return isLoading ? (
-    <p>Loading item...</p>
-  ) : (
-    <div className="todo-item mg-b-10">
-      <div className="mg-r-10">{props.item.name}</div>
-      <span>
-        <button
-          className="mg-r-10"
+  return (
+    <Table.Row border={false}>
+      <Table.Cell>
+        {isLoading ? "Processing item... " : props.item.name}
+      </Table.Cell>
+      <Table.Cell width="20px">
+        <IconButton
+          variant="ghost"
           onClick={deleteItem.bind(this, props.item.id)}
         >
-          Delete
-        </button>
+          <Cross1Icon />
+        </IconButton>
+      </Table.Cell>
+      <Table.Cell width="20px">
         {!props.item.isCompleted && (
-          <button onClick={markAsComplete.bind(this, props.item)}>
-            Mark complete
-          </button>
+          <IconButton
+            variant="ghost"
+            onClick={markAsComplete.bind(this, props.item)}
+          >
+            <CheckIcon />
+          </IconButton>
         )}
-      </span>
-    </div>
+      </Table.Cell>
+    </Table.Row>
   );
 };
 

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { isLoggedIn } from "../utils/loginUtil";
 import LogoutUI from "../components/LogoutUI/LogoutUI";
 import { setUpFBApp } from "../utils/generalUtil";
-
+import TopBar from "../components/TopBar/TopBar";
 setUpFBApp();
 
 const Root = () => {
@@ -18,8 +18,7 @@ const Root = () => {
   }, [userLoggedIn, navigate]);
   return (
     <div>
-      <h1>To do</h1>
-      {userLoggedIn && <LogoutUI></LogoutUI>}
+      <TopBar userLoggedIn={userLoggedIn} />
       <Outlet></Outlet>
     </div>
   );

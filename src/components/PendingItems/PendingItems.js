@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchItems } from "../../store/itemsSlice";
 import Item from "../Item/Item";
+import { Table } from "@radix-ui/themes";
 const PendingItems = () => {
   const dispatch = useDispatch();
 
@@ -19,9 +20,13 @@ const PendingItems = () => {
         <p>Loading ...</p>
       ) : (
         <div>
-          {items.map((item) => {
-            return <Item item={item} key={item.id}></Item>;
-          })}
+          <Table.Root>
+            <Table.Body>
+              {items.map((item) => {
+                return <Item item={item} key={item.id}></Item>;
+              })}
+            </Table.Body>
+          </Table.Root>
         </div>
       )}
     </div>

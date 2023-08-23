@@ -1,5 +1,6 @@
 .add-item {
   display: flex;
+  gap: 10px;
   justify-content: center;
 }
 
@@ -12,8 +13,6 @@
 .todo-list .todo-item {
   display: flex;
 }
-
-
 
 .mg-r-10 {
   margin-right: 10px;

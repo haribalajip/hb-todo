@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItemReq } from "../../store/itemsSlice";
+import { Button, TextField } from "@radix-ui/themes";
+import { PlusIcon } from "@radix-ui/react-icons";
 const AddItem = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
@@ -19,13 +21,14 @@ const AddItem = () => {
 
   return (
     <div className="add-item">
-      <input
-        className="mg-r-10"
+      <TextField.Input
         value={inputValue}
-        placeholder="Enter your item"
+        placeholder="Start typing"
         onChange={handleInputChange}
-      ></input>
-      <button onClick={handleAddItem}>Add note</button>
+      ></TextField.Input>
+      <Button onClick={handleAddItem}>
+        <PlusIcon /> Add task
+      </Button>
     </div>
   );
 };
