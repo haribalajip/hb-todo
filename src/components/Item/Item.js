@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { deleteItemReq, markDoneReq } from "../../store/itemsSlice";
 import { useState } from "react";
-import { Table, Button, IconButton } from "@radix-ui/themes";
+import { Table, IconButton } from "@radix-ui/themes";
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 const Item = (props) => {
   const dispatch = useDispatch();
