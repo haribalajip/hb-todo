@@ -5,6 +5,7 @@ import { Button, TextField } from "@radix-ui/themes";
 import { PlusIcon } from "@radix-ui/react-icons";
 const AddItem = () => {
   const [inputValue, setInputValue] = useState("");
+  const disableInputValue = !inputValue.length;
   const dispatch = useDispatch();
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -26,7 +27,7 @@ const AddItem = () => {
         placeholder="Start typing"
         onChange={handleInputChange}
       ></TextField.Input>
-      <Button onClick={handleAddItem}>
+      <Button onClick={handleAddItem} disabled={disableInputValue}>
         <PlusIcon /> Add task
       </Button>
     </div>
