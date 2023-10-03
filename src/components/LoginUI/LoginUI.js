@@ -4,6 +4,7 @@ import "firebaseui/dist/firebaseui.css";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../utils/loginUtil";
+import { Button } from "@radix-ui/themes";
 
 const { localStorage } = window;
 const uiConfig = {
@@ -31,7 +32,7 @@ const LoginUI = () => {
   };
   return (
     <div id="loginUI">
-      <button onClick={runLoginUI}> Sign in with google</button>
+      <Button onClick={runLoginUI}>Continue with Google</Button>
     </div>
   );
 };
