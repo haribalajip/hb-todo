@@ -20,13 +20,9 @@ const PendingItems = () => {
         <p>Loading ...</p>
       ) : (
         <div>
-          <Table.Root>
-            <Table.Body>
-              {items.map((item) => {
-                return <Item item={item} key={item.id}></Item>;
-              })}
-            </Table.Body>
-          </Table.Root>
+          {items.map((item) => {
+            return <Item item={item} key={item.id}></Item>;
+          })}
         </div>
       )}
     </div>

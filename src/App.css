@@ -1,13 +1,7 @@
-.add-item {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
 .todo-list {
+  padding: 15px;
   display: flex;
   justify-content: center;
-  padding: 15px;
 }
 
 .todo-list .todo-item {

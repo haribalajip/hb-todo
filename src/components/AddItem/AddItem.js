@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { addItemReq } from "../../store/itemsSlice";
 import { Button, TextField } from "@radix-ui/themes";
 import { PlusIcon } from "@radix-ui/react-icons";
+import styles from "./AddItem.module.css";
+
 const AddItem = () => {
   const [inputValue, setInputValue] = useState("");
   const disableInputValue = !inputValue.length;
@@ -21,7 +23,7 @@ const AddItem = () => {
   };
 
   return (
-    <div className="add-item">
+    <div className={styles.AddItem}>
       <TextField.Input
         value={inputValue}
         placeholder="Start typing"
