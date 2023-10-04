@@ -3,3 +3,7 @@
   gap: 10px;
   justify-content: center;
 }
+
+.AddItem button {
+  min-width: 105px;
+}

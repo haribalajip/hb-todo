@@ -12,6 +12,7 @@ import {
 
 const initialState = {
   isListLoading: true,
+  isItemBeingAdded: false,
   items: [],
 };
 const itemsSlice = createSlice({
@@ -47,6 +48,10 @@ const itemsSlice = createSlice({
 
     toggleListLoading(state, { payload }) {
       state.isListLoading = payload;
+      return state;
+    },
+    toggleItemBeingAddedLoader(state, { payload }) {
+      state.isItemBeingAdded = payload;
       return state;
     },
   },
@@ -92,7 +97,7 @@ export const deleteItemReq = ({ dispatch, id, setIsLoading }) => {
 export const addItemReq = (dispatch, item) => {
   return async () => {
     try {
-      dispatch(itemsSliceActions.toggleListLoading(true));
+      dispatch(itemsSliceActions.toggleItemBeingAddedLoader(true));
       const db = getFirestore(window.firebaseApp);
       const taskDoc = await addDoc(
         collection(db, "users", getCurrentUserId(), "tasks"),
@@ -104,7 +109,7 @@ export const addItemReq = (dispatch, item) => {
       console.log(e);
       alert("Could not add tasks. Try again.");
     } finally {
-      dispatch(itemsSliceActions.toggleListLoading(false));
+      dispatch(itemsSliceActions.toggleItemBeingAddedLoader(false));
     }
   };
 };

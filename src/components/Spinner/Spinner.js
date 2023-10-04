@@ -1,7 +1,7 @@
 import styles from "./Spinner.module.css";
 
 export default function Spinner(props) {
-  let svgClassName = props.class ? props.class : "svg-md";
+  let svgClassName = props.customClassName ? props.customClassName : "svg-md";
   return (
     <svg
       className={svgClassName}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItemReq } from "../../store/itemsSlice";
 import { Button, TextField } from "@radix-ui/themes";
 import { PlusIcon } from "@radix-ui/react-icons";
+import Spinner from "../Spinner/Spinner";
 import styles from "./AddItem.module.css";
 
 const AddItem = () => {
@@ -29,6 +30,10 @@ const AddItem = () => {
     setInputValue("");
   };
 
+  const isItemBeingAdded = useSelector(
+    (state) => state.todoListItems.isItemBeingAdded
+  );
+
   return (
     <form className={styles.AddItem} onSubmit={handleAddItem}>
       <TextField.Input
@@ -36,12 +41,19 @@ const AddItem = () => {
         placeholder="Start typing"
         onChange={handleInputChange}
       ></TextField.Input>
+
       <Button
         type="submit"
         onClick={handleAddItem}
         disabled={disableInputValue}
       >
-        <PlusIcon /> Add task
+        {isItemBeingAdded ? (
+          <Spinner customClassName="svg-sm" />
+        ) : (
+          <>
+            <PlusIcon /> Add task
+          </>
+        )}
       </Button>
     </form>
   );
