@@ -18,7 +18,7 @@ const PendingItems = () => {
       {isLoading ? (
         <p>Loading ...</p>
       ) : items.length === 0 ? (
-        <p>You dont have any tasks</p>
+        <p>You haven't any any tasks yet</p>
       ) : (
         <div>
           {items.map((item) => {

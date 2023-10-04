@@ -16,24 +16,33 @@ const Item = (props) => {
     dispatch(markDoneReq({ dispatch, item, setIsLoading }));
   };
 
+  let containerClassName = styles.itemContainer;
+  if (props.item.isCompleted) {
+    containerClassName += ` ${styles.completed}`;
+  }
+
   return (
-    <div className={styles.itemContainer}>
-      <div className={styles.label}>
-        {isLoading ? "Processing item... " : props.item.name}
-      </div>
-      <IconButton
-        variant="ghost"
-        onClick={deleteItem.bind(this, props.item.id)}
-      >
-        <Cross1Icon />
-      </IconButton>
-      {!props.item.isCompleted && (
-        <IconButton
-          variant="ghost"
-          onClick={markAsComplete.bind(this, props.item)}
-        >
-          <CheckIcon />
-        </IconButton>
+    <div>
+      {isLoading ? (
+        <div className={styles.itemContainer}>Processing</div>
+      ) : (
+        <div className={containerClassName}>
+          <div className={styles.label}>{props.item.name}</div>
+          <IconButton
+            variant="ghost"
+            onClick={deleteItem.bind(this, props.item.id)}
+          >
+            <Cross1Icon />
+          </IconButton>
+          {!props.item.isCompleted && (
+            <IconButton
+              variant="ghost"
+              onClick={markAsComplete.bind(this, props.item)}
+            >
+              <CheckIcon />
+            </IconButton>
+          )}
+        </div>
       )}
     </div>
   );
