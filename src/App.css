@@ -1,6 +1,3 @@
-@import "@radix-ui/colors/black-alpha.css";
-@import "@radix-ui/colors/violet.css";
-
 .todo-list {
   padding: 15px;
   display: flex;
@@ -26,25 +23,4 @@
 /* reset */
 button {
   all: unset;
-}
-
-.CheckboxRoot {
-  background-color: white;
-  width: 25px;
-  height: 25px;
-  border-radius: 4px;
-  display: flex;
-  align-items: end;
-  justify-content: center;
-  border: 1px solid #333;
-}
-.CheckboxRoot:hover {
-  background-color: var(--violet-3);
-}
-.CheckboxRoot:focus {
-  box-shadow: 0 0 0 1px #333;
-}
-
-.CheckboxIndicator {
-  color: var(--violet-11);
 }
