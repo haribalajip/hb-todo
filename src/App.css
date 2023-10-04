@@ -1,13 +1,7 @@
-.add-item {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
 .todo-list {
+  padding: 15px;
   display: flex;
   justify-content: center;
-  padding: 15px;
 }
 
 .todo-list .todo-item {
@@ -20,4 +14,13 @@
 
 .mg-b-10 {
   margin-bottom: 10px;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* reset */
+button {
+  all: unset;
 }

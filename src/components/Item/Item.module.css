@@ -1,0 +1,23 @@
+.itemContainer {
+  display: grid;
+  grid-template-columns: 150px 30px 30px;
+  gap: 10px;
+}
+
+.label {
+  min-width: 100px;
+}
+
+.itemContainer button {
+  width: 20px;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.itemContainer:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+}
