@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchItems } from "../../store/itemsSlice";
+import Spinner from "../Spinner/Spinner";
+
 import Item from "../Item/Item";
 const PendingItems = () => {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ const PendingItems = () => {
   return (
     <div className="todo-list">
       {isLoading ? (
-        <p>Loading ...</p>
+        <Spinner />
       ) : items.length === 0 ? (
         <p>You haven't added any tasks yet</p>
       ) : (

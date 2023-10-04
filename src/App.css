@@ -2,6 +2,8 @@
   padding: 15px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 100px;
 }
 
 .todo-list .todo-item {
@@ -18,6 +20,10 @@
 
 .font-semibold {
   font-weight: 600;
+}
+
+.svg-md {
+  width: 30px;
 }
 
 /* reset */
