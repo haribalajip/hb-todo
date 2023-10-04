@@ -23,16 +23,20 @@ const AddItem = () => {
   };
 
   return (
-    <div className={styles.AddItem}>
+    <form className={styles.AddItem} onSubmit={handleAddItem}>
       <TextField.Input
         value={inputValue}
         placeholder="Start typing"
         onChange={handleInputChange}
       ></TextField.Input>
-      <Button onClick={handleAddItem} disabled={disableInputValue}>
+      <Button
+        type="submit"
+        onClick={handleAddItem}
+        disabled={disableInputValue}
+      >
         <PlusIcon /> Add task
       </Button>
-    </div>
+    </form>
   );
 };
 export default AddItem;
