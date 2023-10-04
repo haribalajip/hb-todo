@@ -1,3 +1,6 @@
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/violet.css";
+
 .todo-list {
   padding: 15px;
   display: flex;
@@ -16,9 +19,9 @@
   margin-bottom: 10px;
 }
 
-/* Checkbox */
-@import "@radix-ui/colors/black-alpha.css";
-@import "@radix-ui/colors/violet.css";
+.font-semibold {
+  font-weight: 600;
+}
 
 /* reset */
 button {

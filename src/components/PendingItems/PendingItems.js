@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchItems } from "../../store/itemsSlice";
 import Item from "../Item/Item";
+import { Heading } from "@radix-ui/themes";
 const PendingItems = () => {
   const dispatch = useDispatch();
 
@@ -18,9 +19,10 @@ const PendingItems = () => {
       {isLoading ? (
         <p>Loading ...</p>
       ) : items.length === 0 ? (
-        <p>You haven't any any tasks yet</p>
+        <p>You haven't added any tasks yet</p>
       ) : (
         <div>
+          <p className="font-semibold"> Your tasks</p>
           {items.map((item) => {
             return <Item item={item} key={item.id}></Item>;
           })}
