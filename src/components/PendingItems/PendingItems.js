@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchItems } from "../../store/itemsSlice";
 import Item from "../Item/Item";
-import { Table } from "@radix-ui/themes";
 const PendingItems = () => {
   const dispatch = useDispatch();
 
@@ -18,6 +17,8 @@ const PendingItems = () => {
     <div className="todo-list">
       {isLoading ? (
         <p>Loading ...</p>
+      ) : items.length === 0 ? (
+        <p>You dont have any tasks</p>
       ) : (
         <div>
           {items.map((item) => {
