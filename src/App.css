@@ -24,3 +24,8 @@
 button {
   all: unset;
 }
+
+/* Firebase login ui fix*/
+.firebaseui-container {
+  display: none;
+}
