@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { deleteItemReq, markDoneReq } from "../../store/itemsSlice";
 import { useState } from "react";
-import { Table, IconButton } from "@radix-ui/themes";
+import { IconButton } from "@radix-ui/themes";
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 import styles from "./Item.module.css";
 

@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchItems } from "../../store/itemsSlice";
 import Item from "../Item/Item";
-import { Heading } from "@radix-ui/themes";
 const PendingItems = () => {
   const dispatch = useDispatch();
 
