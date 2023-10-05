@@ -1,0 +1,41 @@
+.mg-r-10 {
+  margin-right: 10px;
+}
+
+.mg-b-10 {
+  margin-bottom: 10px;
+}
+.mg-l-10 {
+  margin-left: 10px;
+}
+
+/* Flex */
+.flex {
+  display: flex;
+}
+
+.flex--align-center {
+  align-items: center;
+}
+
+.flex--column {
+  flex-direction: column;
+}
+
+/* Typography */
+.text-muted {
+  color: #beafaf;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* SVG */
+.svg-md {
+  width: 30px;
+}
+
+.svg-sm {
+  width: 20px;
+}

@@ -22,7 +22,7 @@ const PendingItems = () => {
         <Spinner />
       ) : items.length === 0 ? (
         <article className="flex flex--column flex--align-center">
-          <p>No tasks for you today, lucky duck!</p>
+          <p className="text-muted">No tasks for you today, lucky duck!</p>
           <img src="icons/dreamer.svg" alt="" className={styles.emptyState} />
         </article>
       ) : (

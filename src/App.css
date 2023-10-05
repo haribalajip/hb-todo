@@ -10,40 +10,6 @@
   display: flex;
 }
 
-.mg-r-10 {
-  margin-right: 10px;
-}
-
-.mg-b-10 {
-  margin-bottom: 10px;
-}
-.mg-l-10 {
-  margin-left: 10px;
-}
-
-.font-semibold {
-  font-weight: 600;
-}
-
-.svg-md {
-  width: 30px;
-}
-
-.svg-sm {
-  width: 20px;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex--align-center {
-  align-items: center;
-}
-
-.flex--column {
-  flex-direction: column;
-}
 /* reset */
 button {
   all: unset;
