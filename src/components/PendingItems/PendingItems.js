@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchItems } from "../../store/itemsSlice";
 import Spinner from "../Spinner/Spinner";
+import styles from "./PendingItems.module.css";
 
 import Item from "../Item/Item";
 const PendingItems = () => {
@@ -20,7 +21,10 @@ const PendingItems = () => {
       {isLoading ? (
         <Spinner />
       ) : items.length === 0 ? (
-        <p>You haven't added any tasks yet</p>
+        <article className="flex flex--column flex--align-center">
+          <p>No tasks for you today, lucky duck!</p>
+          <img src="icons/dreamer.svg" alt="" className={styles.emptyState} />
+        </article>
       ) : (
         <div>
           <p className="font-semibold"> Your tasks</p>

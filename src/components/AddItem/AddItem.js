@@ -38,7 +38,7 @@ const AddItem = () => {
     <form className={styles.AddItem} onSubmit={handleAddItem}>
       <TextField.Input
         value={inputValue}
-        placeholder="Start typing"
+        placeholder="Pop in the task name"
         onChange={handleInputChange}
       ></TextField.Input>
 
