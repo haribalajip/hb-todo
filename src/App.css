@@ -1,3 +1,8 @@
+:root {
+  --text-muted-color: #beafaf;
+  --grey-med: #f9fafb;
+}
+
 .todo-list {
   padding: 15px;
   display: flex;

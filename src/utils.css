@@ -24,7 +24,7 @@
 
 /* Typography */
 .text-muted {
-  color: #beafaf;
+  color: var(--text-muted-color);
 }
 
 .font-semibold {
