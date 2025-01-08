@@ -6,6 +6,8 @@
   background: #f9fafb;
   border-radius: 5px;
   margin-bottom: 10px;
+  animation-duration: 0.7s;
+  animation-name: fadeIn;
 }
 
 .label {
@@ -24,4 +26,15 @@
 
 .completed {
   text-decoration: line-through;
+}
+
+/* todo: move this to app.css */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
