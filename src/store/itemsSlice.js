@@ -114,14 +114,14 @@ export const addItemReq = (dispatch, item) => {
   };
 };
 
-export const markDoneReq = ({ dispatch, item, setIsLoading }) => {
+export const toggleCompleteReq = ({ dispatch, item, setIsLoading, isCompleted }) => {
   return async () => {
     try {
       setIsLoading(true);
       const db = getFirestore(window.firebaseApp);
       const docRef = doc(db, "users", getCurrentUserId(), "tasks", item.id);
-      await updateDoc(docRef, { isCompleted: true });
-      dispatch(itemsSliceActions.updateItem({ ...item, isCompleted: true }));
+      await updateDoc(docRef, { isCompleted });
+      dispatch(itemsSliceActions.updateItem({ ...item, isCompleted }));
     } catch (e) {
       alert("Could not update the task. Try again.");
     } finally {

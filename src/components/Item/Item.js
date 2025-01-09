@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { deleteItemReq, markDoneReq } from "../../store/itemsSlice";
+import { deleteItemReq, toggleCompleteReq } from "../../store/itemsSlice";
 import { useState } from "react";
 import { IconButton } from "@radix-ui/themes";
-import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
+import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon } from "@radix-ui/react-icons";
 import styles from "./Item.module.css";
 import Spinner from "../Spinner/Spinner";
 
@@ -13,8 +13,8 @@ const Item = (props) => {
     dispatch(deleteItemReq({ dispatch, id, setIsLoading }));
   };
 
-  const markAsComplete = (item) => {
-    dispatch(markDoneReq({ dispatch, item, setIsLoading }));
+  const markAsComplete = (item, isCompleted) => {
+    dispatch(toggleCompleteReq({ dispatch, item, setIsLoading, isCompleted }));
   };
 
   let containerClassName = styles.itemContainer;
@@ -34,16 +34,18 @@ const Item = (props) => {
               variant="ghost"
               onClick={deleteItem.bind(this, props.item.id)}
             >
-              <Cross1Icon />
+              <Cross2Icon />
             </IconButton>
-            {!props.item.isCompleted && (
-              <IconButton
-                variant="ghost"
-                onClick={markAsComplete.bind(this, props.item)}
-              >
+            <IconButton
+              variant="ghost"
+              onClick={markAsComplete.bind(this, props.item, !props.item.isCompleted)}
+            >
+              {props.item.isCompleted ? (
+                <CounterClockwiseClockIcon/>
+              ):
                 <CheckIcon />
-              </IconButton>
-            )}
+              }
+            </IconButton>
           </>
         )}
       </div>
