@@ -27,7 +27,7 @@ const Item = (props) => {
       <div className={containerClassName}>
         <div className={styles.label}>{props.item.name}</div>
         {isLoading ? (
-          <Spinner customClassName="svg-sm mg-l-10" />
+          <Spinner customClassName={`svg-sm ${styles.spinner}`} />
         ) : (
           <>
             <IconButton
