@@ -25,6 +25,7 @@ const AddItem = () => {
     let item = {
       name: inputValue,
       isCompleted: false,
+      createdAt: new Date().toISOString()
     };
     dispatch(addItemReq(dispatch, item));
     setInputValue("");

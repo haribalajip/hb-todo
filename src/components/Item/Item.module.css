@@ -1,6 +1,6 @@
 .itemContainer {
   display: grid;
-  grid-template-columns: 1fr 30px 30px;
+  grid-template-columns: 3fr 100px 30px 30px;
   gap: 10px;
   padding: 10px;
   background: var(--grey-med);
@@ -25,10 +25,13 @@
 }
 
 .completed {
-  text-decoration: line-through;
   color: var(--text-muted-color);
   animation-duration: 0.5s;
   animation-name: fadeText;
+}
+
+.completed > .label {
+  text-decoration: line-through;
 }
 
 /* todo: move this to app.css */
@@ -56,4 +59,12 @@
   display: flex;
   align-self: center;
   margin-left: 7px;
+}
+
+.date {
+  font-size: 11px;
+  color: var(--text-muted-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

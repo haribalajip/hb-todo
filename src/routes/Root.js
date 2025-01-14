@@ -17,7 +17,7 @@ const Root = () => {
   }, [userLoggedIn, navigate]);
   return (
     <div>
-      <TopBar userLoggedIn={userLoggedIn} />
+      {userLoggedIn && <TopBar userLoggedIn={userLoggedIn} />}
       <Outlet></Outlet>
     </div>
   );
