@@ -7,3 +7,9 @@
 .AddItem button {
   min-width: 105px;
 }
+
+.calloutContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
