@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { deleteItemReq, toggleCompleteReq } from "../../store/itemsSlice";
 import { useState } from "react";
 import { IconButton } from "@radix-ui/themes";
-import { Tooltip } from "@radix-ui/themes";
+import { Tooltip, Text } from "@radix-ui/themes";
 import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon } from "@radix-ui/react-icons";
 import styles from "./Item.module.css";
 import Spinner from "../Spinner/Spinner";
@@ -28,9 +28,9 @@ const Item = (props) => {
   return (
     <div>
       <div className={containerClassName}>
-        <div className={styles.label}>{props.item.name}</div>
+        <Text size="3" className={styles.label}>{props.item.name}</Text>
         <Tooltip content={createdAt && `Created at ${dateTooltip}`}>
-          <div className={styles.date}>{props.item.createdAt && createdAt.toLocaleDateString()}</div>
+          <Text size="1" className={styles.date}>{props.item.createdAt && createdAt.toLocaleDateString()}</Text>
         </Tooltip>
         {isLoading ? (
           <Spinner customClassName={`svg-sm ${styles.spinner}`} />
