@@ -5,6 +5,7 @@ import Spinner from "../Spinner/Spinner";
 import styles from "./PendingItems.module.css";
 
 import Item from "../Item/Item";
+import { Heading } from "@radix-ui/themes";
 const PendingItems = () => {
   const dispatch = useDispatch();
 
@@ -15,6 +16,11 @@ const PendingItems = () => {
   const items = useSelector((state) => {
     return state.todoListItems.items;
   });
+
+  const groupedItems = Object.groupBy(items, ({ createdAt }) => {
+    return createdAt.split('T')[0];
+  });
+  
   const isLoading = useSelector((state) => state.todoListItems.isListLoading);
   return (
     <div className="todo-list">
@@ -26,12 +32,18 @@ const PendingItems = () => {
           <img src="icons/dreamer.svg" alt="" className={styles.emptyState} />
         </article>
       ) : (
-        <div>
-          <p className="font-semibold"> Your tasks</p>
-          {items.map((item) => {
-            return <Item item={item} key={item.id}></Item>;
-          })}
-        </div>
+        Object.keys(groupedItems).map(key => {
+          return (
+            <div className={styles.listGroup}>
+              <Heading size="3" mb='2'>{key}</Heading>
+              <div>
+                {groupedItems[key].map((item) => {
+                  return <Item item={item} key={item.id}></Item>;
+                })}
+              </div>
+            </div>
+          )
+        })
       )}
     </div>
   );
