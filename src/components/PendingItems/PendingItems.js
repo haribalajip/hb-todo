@@ -32,18 +32,20 @@ const PendingItems = () => {
           <img src="icons/dreamer.svg" alt="" className={styles.emptyState} />
         </article>
       ) : (
-        Object.keys(groupedItems).map(key => {
-          return (
-            <div className={styles.listGroup}>
-              <Heading size="3" mb='2'>{key}</Heading>
-              <div>
-                {groupedItems[key].map((item) => {
-                  return <Item item={item} key={item.id}></Item>;
-                })}
+        <div>
+          {Object.keys(groupedItems).map(key => {
+            return (
+              <div className={styles.listGroup}>
+                <Heading size="3" mb='2'>{key}</Heading>
+                <div>
+                  {groupedItems[key].map((item) => {
+                    return <Item item={item} key={item.id}></Item>;
+                  })}
+                </div>
               </div>
-            </div>
-          )
-        })
+            )
+          })}
+        </div>
       )}
     </div>
   );
