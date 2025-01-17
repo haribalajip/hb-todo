@@ -17,7 +17,7 @@ const PendingItems = () => {
     return state.todoListItems.items;
   });
 
-  const groupedItems = Object.groupBy(items, ({ createdAt = 'Your tasks' }) => {
+  const groupedItems = Object.groupBy(items, ({ createdAt = 'Your old tasks' }) => {
     return createdAt.split('T')[0];
   });
   

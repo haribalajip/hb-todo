@@ -29,9 +29,11 @@ const Item = (props) => {
     <div>
       <div className={containerClassName}>
         <Text size="3" className={styles.label}>{props.item.name}</Text>
-        <Tooltip content={createdAt && `Created at ${dateTooltip}`}>
-          <Text size="1" className={styles.date}>{props.item.createdAt && createdAt.toLocaleDateString()}</Text>
-        </Tooltip>
+        {createdAt &&
+          <Tooltip content={`Created at ${dateTooltip}`}>
+            <Text size="1" className={styles.date}>{props.item.createdAt && createdAt.toLocaleDateString()}</Text>
+          </Tooltip>
+        }
         {isLoading ? (
           <Spinner customClassName={`svg-sm ${styles.spinner}`} />
         ) : (
