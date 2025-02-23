@@ -7,7 +7,7 @@ const TopBar = (props) => {
     <div>
       <div className={styles.TopBar}>
         <MixIcon width="25" height="25"></MixIcon>
-        <Heading size="6"> To do</Heading>
+        <Heading size="6">Chronos</Heading>
         {props.userLoggedIn ? <LogoutUI></LogoutUI> : "Not logged in"}
       </div>
       <Separator my="3" size="4" />
