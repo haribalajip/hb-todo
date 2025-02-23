@@ -6,6 +6,7 @@ import { Tooltip, Text } from "@radix-ui/themes";
 import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon } from "@radix-ui/react-icons";
 import styles from "./Item.module.css";
 import Spinner from "../Spinner/Spinner";
+import { formatRelative, format } from 'date-fns';
 
 const Item = (props) => {
   const dispatch = useDispatch();
@@ -24,14 +25,14 @@ const Item = (props) => {
   }
 
   const createdAt = new Date(props.item.createdAt);
-  const dateTooltip = createdAt.toLocaleString();
+  const dateTooltip = format(createdAt, 'PPpp');
   return (
     <div>
       <div className={containerClassName}>
         <Text size="3" className={styles.label}>{props.item.name}</Text>
         {createdAt &&
           <Tooltip content={`Created at ${dateTooltip}`}>
-            <Text size="1" className={styles.date}>{props.item.createdAt && createdAt.toLocaleDateString()}</Text>
+            <Text size="1" className={styles.date}>{props.item.createdAt && formatRelative(createdAt, new Date())}</Text>
           </Tooltip>
         }
         {isLoading ? (

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { fetchItems } from "../../store/itemsSlice";
 import Spinner from "../Spinner/Spinner";
 import styles from "./PendingItems.module.css";
-
+import { compareDesc, format } from 'date-fns';
 import Item from "../Item/Item";
 import { Heading } from "@radix-ui/themes";
 const PendingItems = () => {
@@ -18,7 +18,7 @@ const PendingItems = () => {
   });
 
   const groupedItems = Object.groupBy(items, ({ createdAt = 'Your old tasks' }) => {
-    return createdAt.split('T')[0];
+    return format(new Date(createdAt), 'PP');
   });
   
   const isLoading = useSelector((state) => state.todoListItems.isListLoading);
@@ -33,7 +33,7 @@ const PendingItems = () => {
         </article>
       ) : (
         <div>
-          {Object.keys(groupedItems).map(key => {
+          {Object.keys(groupedItems).sort(compareDesc).map(key => {
             return (
               <div className={styles.listGroup}>
                 <Heading size="3" mb='2'>{key}</Heading>
