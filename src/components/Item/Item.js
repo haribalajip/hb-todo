@@ -6,7 +6,7 @@ import { Tooltip, Text } from "@radix-ui/themes";
 import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon } from "@radix-ui/react-icons";
 import styles from "./Item.module.css";
 import Spinner from "../Spinner/Spinner";
-import { formatRelative, format } from 'date-fns';
+import { format } from 'date-fns';
 
 const Item = (props) => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Item = (props) => {
         <div className={styles.actionsSection}>
           {createdAt &&
             <Tooltip content={`Created at ${dateTooltip}`}>
-              <Text size="1" className={styles.date}>{props.item.createdAt && formatRelative(createdAt, new Date())}</Text>
+              <Text size="1" className={styles.date}>{props.item.createdAt && format(createdAt, 'Pp')}</Text>
             </Tooltip>
           }
           {isLoading ? (
