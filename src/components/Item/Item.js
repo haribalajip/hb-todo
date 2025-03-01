@@ -30,38 +30,41 @@ const Item = (props) => {
     <div>
       <div className={containerClassName}>
         <Text size="3" className={styles.label}>{props.item.name}</Text>
-        {createdAt &&
-          <Tooltip content={`Created at ${dateTooltip}`}>
-            <Text size="1" className={styles.date}>{props.item.createdAt && formatRelative(createdAt, new Date())}</Text>
-          </Tooltip>
-        }
-        {isLoading ? (
-          <Spinner customClassName={`svg-sm ${styles.spinner}`} />
-        ) : (
-          <>
-            <Tooltip content='Delete'>
-              <IconButton
-                variant="ghost"
-                onClick={deleteItem.bind(this, props.item.id)}
-              >
-                <Cross2Icon />
-              </IconButton>
+        <div className={styles.actionsSection}>
+          {createdAt &&
+            <Tooltip content={`Created at ${dateTooltip}`}>
+              <Text size="1" className={styles.date}>{props.item.createdAt && formatRelative(createdAt, new Date())}</Text>
             </Tooltip>
-            <Tooltip content={props.item.isCompleted ? 'Mark incomplete' : 'Mark complete'}>
-              <IconButton
-                variant="ghost"
-                onClick={markAsComplete.bind(this, props.item, !props.item.isCompleted)}
-              >
-                {props.item.isCompleted ? (
-                  
-                  <CounterClockwiseClockIcon/>
-                ):
-                  <CheckIcon />
-                }
-              </IconButton>
-            </Tooltip>
-          </>
-        )}
+          }
+          {isLoading ? (
+            <Spinner customClassName={`svg-sm ${styles.spinner}`} />
+          ) : (
+            <>
+              <Tooltip content='Delete'>
+                <IconButton
+                  variant="ghost"
+                  onClick={deleteItem.bind(this, props.item.id)}
+                >
+                  <Cross2Icon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip content={props.item.isCompleted ? 'Mark incomplete' : 'Mark complete'}>
+                <IconButton
+                  variant="ghost"
+                  onClick={markAsComplete.bind(this, props.item, !props.item.isCompleted)}
+                >
+                  {props.item.isCompleted ? (
+                    
+                    <CounterClockwiseClockIcon/>
+                  ):
+                    <CheckIcon />
+                  }
+                </IconButton>
+              </Tooltip>
+            </>
+          )}
+
+        </div>
       </div>
     </div>
   );

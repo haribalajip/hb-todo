@@ -22,6 +22,10 @@
   flex-direction: column;
 }
 
+.flex--space-between {
+  justify-content: space-between;
+}
+
 /* Typography */
 .text-muted {
   color: var(--text-muted-color);

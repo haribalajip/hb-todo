@@ -35,7 +35,7 @@ const PendingItems = () => {
         <div>
           {Object.keys(groupedItems).sort(compareDesc).map(key => {
             return (
-              <div className={styles.listGroup}>
+              <div className={styles.listGroup} key={key}>
                 <Heading size="3" mb='2'>{key}</Heading>
                 <div>
                   {groupedItems[key].map((item) => {
