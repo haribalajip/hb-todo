@@ -3,10 +3,12 @@ import { deleteItemReq, toggleCompleteReq } from "../../store/itemsSlice";
 import { useState } from "react";
 import { IconButton } from "@radix-ui/themes";
 import { Tooltip, Text } from "@radix-ui/themes";
-import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon } from "@radix-ui/react-icons";
+import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import styles from "./Item.module.css";
 import Spinner from "../Spinner/Spinner";
 import { format } from 'date-fns';
+import Modal from '../Modal/Modal';
+import EditForm from "./EditForm/EditForm";
 
 const Item = (props) => {
   const dispatch = useDispatch();
@@ -46,6 +48,20 @@ const Item = (props) => {
                   onClick={deleteItem.bind(this, props.item.id)}
                 >
                   <Cross2Icon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip content='Edit'>
+                <IconButton
+                  variant="ghost"
+                >
+                  <Modal>
+                    <Modal.Trigger>
+                      <Pencil1Icon />
+                    </Modal.Trigger>
+                    <Modal.Content>
+                      <EditForm item={props.item} />
+                    </Modal.Content>
+                  </Modal>
                 </IconButton>
               </Tooltip>
               <Tooltip content={props.item.isCompleted ? 'Mark incomplete' : 'Mark complete'}>
