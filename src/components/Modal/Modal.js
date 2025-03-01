@@ -1,18 +1,29 @@
 import React from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { Cross2Icon } from '@radix-ui/react-icons';
 import styles from "./Modal.module.css";
+import ModalContext from '../../contexts/ModalContext';
 
 const Trigger = ({ children }) => {
-  return {children}
+  return (
+    <Dialog.Trigger>
+      {children}
+    </Dialog.Trigger>
+  )
 };
 
-const Content = ({ children }) => {
-  return {children}
+const Content = ({ children, setOpen }) => {
+  return (
+    <Dialog.Content className={styles.Content + ' radix-themes'}>
+      <Dialog.Title className={styles.Title}>Edit task</Dialog.Title>
+      <ModalContext.Provider value={{ setOpen }}>
+        {children}
+      </ModalContext.Provider>
+      
+    </Dialog.Content>
+  )
 }
 
 function Modal({ children }) {
-  console.log(React.Children.toArray(children));
   const trigger = React.Children.toArray(children).find((child) => {
     return child.type.name === "Trigger";
   }).props.children;
@@ -21,34 +32,14 @@ function Modal({ children }) {
     return child.type.name === "Content";
   }).props.children;
 
+	const [open, setOpen] = React.useState(false);
   
   return (
-    <Dialog.Root>
-      <Dialog.Trigger>
-        {trigger}
-      </Dialog.Trigger>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
+      <Trigger children={trigger}/>
       <Dialog.Portal>
-        <Dialog.Overlay className={styles.Overlay} />
-        <Dialog.Content className={styles.Content + ' radix-themes'}>
-          <Dialog.Title className={styles.Title}>Edit task</Dialog.Title>
-          {content}
-          <div
-            style={{
-              display: "flex",
-              marginTop: 25,
-              justifyContent: "flex-end",
-            }}
-          >
-            <Dialog.Close asChild>
-              <button className={`${styles.Button} green`}>Save changes</button>
-            </Dialog.Close>
-          </div>
-          <Dialog.Close asChild>
-            <button className={styles.IconButton} aria-label="Close">
-              <Cross2Icon />
-            </button>
-          </Dialog.Close>
-        </Dialog.Content>
+      <Dialog.Overlay className={styles.Overlay} />
+      <Content children={content} setOpen={setOpen}/>
       </Dialog.Portal>
     </Dialog.Root>
   );

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteItemReq, toggleCompleteReq } from "../../store/itemsSlice";
+import { deleteItemReq, toggleCompleteReq, updateItem } from "../../store/itemsSlice";
 import { useState } from "react";
 import { IconButton } from "@radix-ui/themes";
 import { Tooltip, Text } from "@radix-ui/themes";
@@ -20,6 +20,10 @@ const Item = (props) => {
   const markAsComplete = (item, isCompleted) => {
     dispatch(toggleCompleteReq({ dispatch, item, setIsLoading, isCompleted }));
   };
+
+  const saveItemEdits = (item, setIsLoading) => {
+    dispatch(updateItem({ dispatch, item, setIsLoading }));
+  }
 
   let containerClassName = styles.itemContainer;
   if (props.item.isCompleted) {
@@ -59,7 +63,7 @@ const Item = (props) => {
                       <Pencil1Icon />
                     </Modal.Trigger>
                     <Modal.Content>
-                      <EditForm item={props.item} />
+                      <EditForm item={props.item} saveItem={saveItemEdits}/>
                     </Modal.Content>
                   </Modal>
                 </IconButton>

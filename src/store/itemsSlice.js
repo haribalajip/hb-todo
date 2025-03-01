@@ -128,6 +128,25 @@ export const toggleCompleteReq = ({ dispatch, item, setIsLoading, isCompleted })
       setIsLoading(false);
     }
   };
+
 };
+export const updateItem = ({ dispatch, item, setIsLoading }) => {
+  return async () => {
+    try {
+      setIsLoading(true);
+      const db = getFirestore(window.firebaseApp);
+      const docRef = doc(db, "users", getCurrentUserId(), "tasks", item.id);
+      await updateDoc(docRef, { name: item.name });
+      dispatch(itemsSliceActions.updateItem(item));
+    } catch (e) {
+      console.error(e)
+      alert("Could not update the task. Try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+};
+
+
 export const itemsSliceActions = itemsSlice.actions;
 export const itemsSliceReducer = itemsSlice.reducer;
