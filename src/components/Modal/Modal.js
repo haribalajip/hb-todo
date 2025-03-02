@@ -3,11 +3,13 @@ import * as Dialog from '@radix-ui/react-dialog';
 import styles from "./Modal.module.css";
 import ModalContext from '../../contexts/ModalContext';
 
-const Trigger = ({ children }) => {
+const Trigger = ({ children, setOpen }) => {
   return (
-    <Dialog.Trigger>
+    // <Dialog.Trigger> is a button, children could be again a button. So button inside a button will break styles.
+    // So we are using a div here. 
+    <div onClick={() => setOpen(true)}>
       {children}
-    </Dialog.Trigger>
+    </div>
   )
 };
 
@@ -36,7 +38,7 @@ function Modal({ children }) {
   
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Trigger children={trigger}/>
+      <Trigger children={trigger} setOpen={setOpen}/>
       <Dialog.Portal>
       <Dialog.Overlay className={styles.Overlay} />
       <Content children={content} setOpen={setOpen}/>

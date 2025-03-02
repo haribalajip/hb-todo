@@ -54,20 +54,19 @@ const Item = (props) => {
                   <Cross2Icon />
                 </IconButton>
               </Tooltip>
-              <Tooltip content='Edit'>
-                <IconButton
-                  variant="ghost"
-                >
-                  <Modal>
-                    <Modal.Trigger>
-                      <Pencil1Icon />
-                    </Modal.Trigger>
-                    <Modal.Content>
-                      <EditForm item={props.item} saveItem={saveItemEdits}/>
-                    </Modal.Content>
-                  </Modal>
-                </IconButton>
-              </Tooltip>
+
+                {/* Opens a Task edit modal */}
+                <Modal>
+                  <Modal.Trigger>
+                    <Tooltip content='Edit'>
+                      <IconButton variant="ghost"><Pencil1Icon /></IconButton>
+                    </Tooltip>
+                  </Modal.Trigger>
+                  <Modal.Content>
+                    <EditForm item={props.item} saveItem={saveItemEdits}/>
+                  </Modal.Content>
+                </Modal>
+              
               <Tooltip content={props.item.isCompleted ? 'Mark incomplete' : 'Mark complete'}>
                 <IconButton
                   variant="ghost"
