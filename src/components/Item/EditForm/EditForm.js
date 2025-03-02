@@ -17,24 +17,25 @@ const EditForm = ({ item, saveItem }) => {
 	const nameRef = useRef();
 	return (
 		<>
-			<fieldset className={styles.Fieldset}>
-				<label className={styles.Label} htmlFor="name">
-					Name
-				</label>
-				<input
-					className={styles.Input}
-					id="name"
-					defaultValue={item.name}
-					ref={nameRef}
-				/>
-			</fieldset>
-			<div>
+			<div className={styles.formContainer}>
+				<fieldset className={styles.Fieldset}>
+					<label className={styles.Label} htmlFor="name">
+						Name
+					</label>
+					<input
+						className={styles.Input}
+						id="name"
+						defaultValue={item.name}
+						ref={nameRef}
+					/>
+				</fieldset>
+			</div>
+			<div className={styles.footer}>
 				{isSaving ? (
 					<Spinner customClassName={`svg-sm`} />
 				) : (
-					<Button onClick={onSave}>Save</Button>
+					<Button variant='soft' type="submit" onClick={onSave}>Save</Button>
 				)}
-				
 			</div>
 		</>
 	)

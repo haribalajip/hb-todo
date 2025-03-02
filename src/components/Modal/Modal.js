@@ -35,13 +35,16 @@ function Modal({ children }) {
   }).props.children;
 
 	const [open, setOpen] = React.useState(false);
+
+  // Radix styles break when the Dialog.Portal container is under App container.
+  const AppContainer = document.getElementsByClassName('App')[0];
   
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Trigger children={trigger} setOpen={setOpen}/>
-      <Dialog.Portal>
-      <Dialog.Overlay className={styles.Overlay} />
-      <Content children={content} setOpen={setOpen}/>
+      <Dialog.Portal container={AppContainer}>
+        <Dialog.Overlay className={styles.Overlay} />
+        <Content children={content} setOpen={setOpen}/>
       </Dialog.Portal>
     </Dialog.Root>
   );
