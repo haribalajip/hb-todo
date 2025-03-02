@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemReq } from "../../store/itemsSlice";
 import { Button, TextField, Callout } from "@radix-ui/themes";
-import { PlusIcon, InfoCircledIcon } from "@radix-ui/react-icons";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 import Spinner from "../Spinner/Spinner";
 import styles from "./AddItem.module.css";
 
@@ -37,11 +37,11 @@ const AddItem = () => {
   return (
     <div>
       <form className={styles.AddItem} onSubmit={handleAddItem}>
-        <TextField.Input
+        <TextField.Root
           value={inputValue}
           placeholder="Pop in the task name"
           onChange={handleInputChange}
-        ></TextField.Input>
+        ></TextField.Root>
 
         <Button
           type="submit"
@@ -52,7 +52,7 @@ const AddItem = () => {
             <Spinner customClassName="svg-sm" />
           ) : (
             <>
-              <PlusIcon /> Add task
+              Add task
             </>
           )}
         </Button>

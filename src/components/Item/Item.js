@@ -1,12 +1,14 @@
 import { useDispatch } from "react-redux";
-import { deleteItemReq, toggleCompleteReq } from "../../store/itemsSlice";
+import { deleteItemReq, toggleCompleteReq, updateItem } from "../../store/itemsSlice";
 import { useState } from "react";
 import { IconButton } from "@radix-ui/themes";
 import { Tooltip, Text } from "@radix-ui/themes";
-import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon } from "@radix-ui/react-icons";
+import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import styles from "./Item.module.css";
 import Spinner from "../Spinner/Spinner";
-import { formatRelative, format } from 'date-fns';
+import { format } from 'date-fns';
+import Modal from '../Modal/Modal';
+import EditForm from "./EditForm/EditForm";
 
 const Item = (props) => {
   const dispatch = useDispatch();
@@ -18,6 +20,10 @@ const Item = (props) => {
   const markAsComplete = (item, isCompleted) => {
     dispatch(toggleCompleteReq({ dispatch, item, setIsLoading, isCompleted }));
   };
+
+  const saveItemEdits = (item, setIsLoading) => {
+    dispatch(updateItem({ dispatch, item, setIsLoading }));
+  }
 
   let containerClassName = styles.itemContainer;
   if (props.item.isCompleted) {
@@ -33,7 +39,7 @@ const Item = (props) => {
         <div className={styles.actionsSection}>
           {createdAt &&
             <Tooltip content={`Created at ${dateTooltip}`}>
-              <Text size="1" className={styles.date}>{props.item.createdAt && formatRelative(createdAt, new Date())}</Text>
+              <Text size="1" className={styles.date}>{props.item.createdAt && format(createdAt, 'Pp')}</Text>
             </Tooltip>
           }
           {isLoading ? (
@@ -48,6 +54,19 @@ const Item = (props) => {
                   <Cross2Icon />
                 </IconButton>
               </Tooltip>
+
+                {/* Opens a Task edit modal */}
+                <Modal>
+                  <Modal.Trigger>
+                    <Tooltip content='Edit'>
+                      <IconButton variant="ghost"><Pencil1Icon /></IconButton>
+                    </Tooltip>
+                  </Modal.Trigger>
+                  <Modal.Content>
+                    <EditForm item={props.item} saveItem={saveItemEdits}/>
+                  </Modal.Content>
+                </Modal>
+              
               <Tooltip content={props.item.isCompleted ? 'Mark incomplete' : 'Mark complete'}>
                 <IconButton
                   variant="ghost"
