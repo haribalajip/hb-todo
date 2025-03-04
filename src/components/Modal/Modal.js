@@ -26,13 +26,9 @@ const Content = ({ children, setOpen }) => {
 }
 
 function Modal({ children }) {
-  const trigger = React.Children.toArray(children).find((child) => {
-    return child.type.name === "Trigger";
-  }).props.children;
+  const trigger = React.Children.toArray(children)[0].props.children;
 
-  const content = React.Children.toArray(children).find((child) => {
-    return child.type.name === "Content";
-  }).props.children;
+  const content = React.Children.toArray(children)[1].props.children;
 
 	const [open, setOpen] = React.useState(false);
 
