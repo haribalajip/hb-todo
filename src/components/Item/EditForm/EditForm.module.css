@@ -25,7 +25,6 @@
 	padding: 0 10px;
 	font-size: 15px;
 	line-height: 1;
-	color: var(--violet-11);
 	box-shadow: 0 0 0 1px var(--violet-7);
 	height: 35px;
 	&:focus {
