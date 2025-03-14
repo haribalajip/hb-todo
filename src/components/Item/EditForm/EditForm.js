@@ -11,10 +11,11 @@ const EditForm = ({ item, saveItem }) => {
 	let setIsLoading = setOpen
 	const onSave = () => {
 		setIsSaving(true);
-		saveItem({ ...item, name: nameRef.current.value }, setIsLoading);
+		saveItem({ ...item, name: nameRef.current.value, notes: notesRef.current.value }, setIsLoading);
 	}
 
 	const nameRef = useRef();
+	const notesRef = useRef();
 	return (
 		<>
 			<div className={styles.formContainer}>
@@ -27,6 +28,18 @@ const EditForm = ({ item, saveItem }) => {
 						id="name"
 						defaultValue={item.name}
 						ref={nameRef}
+					/>
+				</fieldset>
+				<fieldset className={styles.Fieldset}>
+					<label className={styles.Label} htmlFor="notes">
+						Notes
+					</label>
+					<input
+						className={styles.Input}
+						id="notes"
+						defaultValue={item.notes}
+						ref={notesRef}
+						placeholder="Jot down some extra info here"
 					/>
 				</fieldset>
 			</div>
