@@ -136,7 +136,7 @@ export const updateItem = ({ dispatch, item, setIsLoading }) => {
       setIsLoading(true);
       const db = getFirestore(window.firebaseApp);
       const docRef = doc(db, "users", getCurrentUserId(), "tasks", item.id);
-      await updateDoc(docRef, { name: item.name });
+      await updateDoc(docRef, { name: item.name, notes: item.notes });
       dispatch(itemsSliceActions.updateItem(item));
     } catch (e) {
       console.error(e)
