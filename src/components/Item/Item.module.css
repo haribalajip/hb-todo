@@ -74,7 +74,19 @@
 
 .actionsSection {
   display: flex;
+  align-items: baseline;
   gap: 10px;
+}
+
+.editBtn {
+  position: relative;
+  top: -2px;
+}
+
+.notes {
+  color: var(--text-muted-color);
+  font-size: 0.8rem;
+  margin-top: 5px;
 }
 
 @media (max-width: 481px) {

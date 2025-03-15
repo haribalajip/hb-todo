@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { deleteItemReq, toggleCompleteReq, updateItem } from "../../store/itemsSlice";
 import { useState } from "react";
-import { IconButton } from "@radix-ui/themes";
+import { ChevronDownIcon, IconButton } from "@radix-ui/themes";
 import { Tooltip, Text } from "@radix-ui/themes";
 import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import styles from "./Item.module.css";
@@ -13,6 +13,8 @@ import EditForm from "./EditForm/EditForm";
 const Item = (props) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const deleteItem = (id) => {
     dispatch(deleteItemReq({ dispatch, id, setIsLoading }));
   };
@@ -23,7 +25,11 @@ const Item = (props) => {
 
   const saveItemEdits = (item, setIsLoading) => {
     dispatch(updateItem({ dispatch, item, setIsLoading }));
-  }
+  };
+
+  const toggleExpansion = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   let containerClassName = styles.itemContainer;
   if (props.item.isCompleted) {
@@ -35,7 +41,10 @@ const Item = (props) => {
   return (
     <div>
       <div className={containerClassName}>
-        <Text size="3" className={styles.label}>{props.item.name}</Text>
+        <div>
+          <Text size="3" className={styles.label}>{props.item.name}</Text>
+          {isExpanded && <Text className={`${styles.notes}`}>{props.item.notes}</Text>}
+        </div>
         <div className={styles.actionsSection}>
           {createdAt &&
             <Tooltip content={`Created at ${dateTooltip}`}>
@@ -46,6 +55,13 @@ const Item = (props) => {
             <Spinner customClassName={`svg-sm ${styles.spinner}`} />
           ) : (
             <>
+              {props.item.notes && (
+                <Tooltip content={isExpanded ? 'Collapse' : 'Expand'}>
+                  <IconButton variant="ghost" onClick={toggleExpansion} className={isExpanded && 'rotate180'}>
+                    <ChevronDownIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
               <Tooltip content='Delete'>
                 <IconButton
                   variant="ghost"
@@ -59,7 +75,7 @@ const Item = (props) => {
                 <Modal>
                   <Modal.Trigger>
                     <Tooltip content='Edit'>
-                      <IconButton variant="ghost"><Pencil1Icon /></IconButton>
+                      <IconButton variant="ghost" className={styles.editBtn}><Pencil1Icon /></IconButton>
                     </Tooltip>
                   </Modal.Trigger>
                   <Modal.Content>
