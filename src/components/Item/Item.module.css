@@ -89,7 +89,7 @@
   margin-top: 5px;
 }
 
-@media (max-width: 481px) {
+@media (max-width: var(--small-device-width)) {
   .date {
     display: none;
   }
