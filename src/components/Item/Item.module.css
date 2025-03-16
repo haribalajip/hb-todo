@@ -88,9 +88,6 @@
   font-size: 0.8rem;
   margin-top: 5px;
 }
-
-@media (max-width: var(--small-device-width)) {
-  .date {
-    display: none;
-  }
+.date {
+  display: none;
 }

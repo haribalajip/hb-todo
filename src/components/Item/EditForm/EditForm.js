@@ -44,11 +44,11 @@ const EditForm = ({ item, saveItem }) => {
 				</fieldset>
 			</div>
 			<div className={styles.footer}>
-				<Button variant="soft" color="cyan" onClick={() => setOpen(false)}>Cancel</Button>
+				<Button variant="soft" color="cyan" className="mg-r-10" onClick={() => setOpen(false)}>Cancel</Button>
 				{isSaving ? (
 					<Spinner customClassName={`svg-sm`} />
 				) : (
-					<Button className="mg-l-10" variant='soft' type="submit" onClick={onSave}>Save</Button>
+					<Button variant='soft' type="submit" onClick={onSave}>Save</Button>
 				)}
 			</div>
 		</>
