@@ -41,6 +41,7 @@ const AddItem = () => {
           value={inputValue}
           placeholder="Pop in the task name"
           onChange={handleInputChange}
+          className={styles.input}
         ></TextField.Root>
 
         <Button

@@ -1,3 +1,10 @@
 .pageContainer {
   margin-top: 10%;
+  padding: 0 25%;
+}
+
+@media (max-width: 481px) {
+  .pageContainer {
+    padding: 0 15px;
+  }
 }
