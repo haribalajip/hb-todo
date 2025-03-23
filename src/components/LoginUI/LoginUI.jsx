@@ -15,7 +15,7 @@ const setupSigninUI = () => {
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   return ui;
 };
-const FBUI = setupSigninUI(process.env.REACT_APP_FIREBASE_API_KEY);
+const FBUI = setupSigninUI(import.meta.env.VITE_APP_FIREBASE_API_KEY);
 const provider = new GoogleAuthProvider();
 
 const LoginUI = () => {
