@@ -27,7 +27,7 @@ const PendingItems = () => {
       {isLoading ? (
         <Spinner />
       ) : items.length === 0 ? (
-        <article className="flex flex--column flex--align-center">
+        <article className="flex flex-col items-center">
           <p className="text-muted">No tasks for you today, lucky duck!</p>
           <img src="icons/dreamer.svg" alt="" className={styles.emptyState} />
         </article>
