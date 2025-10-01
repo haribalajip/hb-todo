@@ -4,11 +4,11 @@ import { useState } from "react";
 import { ChevronDownIcon, IconButton } from "@radix-ui/themes";
 import { Tooltip, Text } from "@radix-ui/themes";
 import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon, Pencil1Icon } from "@radix-ui/react-icons";
-import styles from "./Item.module.css";
 import Spinner from "../Spinner/Spinner";
 import { format } from 'date-fns';
 import Modal from '../Modal/Modal';
 import EditForm from "./EditForm/EditForm";
+import classNames from "classnames";
 
 const Item = (props) => {
   const dispatch = useDispatch();
@@ -31,33 +31,30 @@ const Item = (props) => {
     setIsExpanded(!isExpanded);
   };
 
-  let containerClassName = styles.itemContainer;
-  if (props.item.isCompleted) {
-    containerClassName += ` ${styles.completed}`;
-  }
-
   const createdAt = new Date(props.item.createdAt);
   const dateTooltip = format(createdAt, 'PPpp');
+
   return (
     <div>
-      <div className={containerClassName}>
+      <div className={classNames('flex justify-between gap-2.5 p-2.5 bg-gray-50 rounded-md mb-2.5 duration-700 transition-opacity', {'text-gray-400': props.item.isCompleted } )}>
         <div>
-          <Text size="3" className={styles.label}>{props.item.name}</Text>
-          {isExpanded && <Text className={`${styles.notes}`}>{props.item.notes}</Text>}
+          <Text size="3" className={classNames({ 'line-through': props.item.isCompleted }, 'flex items-center min-w-28 break-all')}>{props.item.name}</Text>
+          {isExpanded && <Text className='mt-1.5 text-xs block'>{props.item.notes}</Text>}
         </div>
-        <div className={styles.actionsSection}>
+        <div>
           {createdAt &&
             <Tooltip content={`Created at ${dateTooltip}`}>
-              <Text size="1" className={styles.date}>{props.item.createdAt && format(createdAt, 'Pp')}</Text>
+              <Text size="1" className='flex items-center justify-self-end hidden'>{props.item.createdAt && format(createdAt, 'Pp')}</Text>
             </Tooltip>
           }
           {isLoading ? (
-            <Spinner customClassName={`svg-sm ${styles.spinner}`} />
+            <Spinner customClassName={classNames('svg-sm flex self-center ml-0.25 h-[27px]')} />
           ) : (
-            <>
+            //  Actions section
+            <span className={classNames("grid items-baseline grid-cols-3", { "grid-cols-4": props.item.notes })}> 
               {props.item.notes && (
                 <Tooltip content={isExpanded ? 'Collapse' : 'Expand'}>
-                  <IconButton variant="ghost" onClick={toggleExpansion} className={isExpanded && 'rotate180'}>
+                  <IconButton variant="ghost" onClick={toggleExpansion} className={classNames({ 'rotate180': isExpanded }, 'm-0 w-5')}>
                     <ChevronDownIcon />
                   </IconButton>
                 </Tooltip>
@@ -75,7 +72,7 @@ const Item = (props) => {
                 <Modal>
                   <Modal.Trigger>
                     <Tooltip content='Edit'>
-                      <IconButton variant="ghost" className={styles.editBtn}><Pencil1Icon /></IconButton>
+                      <IconButton variant="ghost" className='m-0 w-5 relative top-[-2px]'><Pencil1Icon /></IconButton>
                     </Tooltip>
                   </Modal.Trigger>
                   <Modal.Content>
@@ -86,6 +83,7 @@ const Item = (props) => {
               <Tooltip content={props.item.isCompleted ? 'Mark incomplete' : 'Mark complete'}>
                 <IconButton
                   variant="ghost"
+                  className="m-0 w-5"
                   onClick={markAsComplete.bind(this, props.item, !props.item.isCompleted)}
                 >
                   {props.item.isCompleted ? (
@@ -96,7 +94,7 @@ const Item = (props) => {
                   }
                 </IconButton>
               </Tooltip>
-            </>
+            </span>
           )}
 
         </div>
