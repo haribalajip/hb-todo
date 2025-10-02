@@ -5,6 +5,7 @@ import { Button, TextField, Callout } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import Spinner from "../Spinner/Spinner";
 import styles from "./AddItem.module.css";
+import StyleConstants from '../../constants/styles';
 
 const AddItem = () => {
   const MAX_LIMIT = 20;
@@ -36,7 +37,7 @@ const AddItem = () => {
 
   return (
     <div>
-      <form className={styles.AddItem} onSubmit={handleAddItem}>
+      <form className={`${StyleConstants.itemWidth} flex justify-self-center gap-2.5 mb-5`} onSubmit={handleAddItem}>
         <TextField.Root
           value={inputValue}
           placeholder="Pop in the task name"

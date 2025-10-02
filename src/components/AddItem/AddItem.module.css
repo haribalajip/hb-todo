@@ -1,14 +1,3 @@
-.AddItem {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  justify-content: center;
-}
-
-.AddItem button {
-  min-width: 105px;
-}
-
 .calloutContainer {
   display: flex;
   justify-content: center;

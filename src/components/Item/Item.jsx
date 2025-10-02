@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import Modal from '../Modal/Modal';
 import EditForm from "./EditForm/EditForm";
 import classNames from "classnames";
+import StyleConstants from '../../constants/styles';
 
 const Item = (props) => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const Item = (props) => {
 
   return (
     <div>
-      <div className={classNames('min-w-[280px] md:w-lg flex justify-between gap-2.5 p-2.5 bg-gray-50 rounded-md mb-2.5 duration-700 transition-opacity', {'text-gray-400': props.item.isCompleted } )}>
+      <div className={classNames(`${StyleConstants.itemWidth} flex justify-between gap-2.5 p-2.5 bg-gray-50 rounded-md mb-2.5 duration-700 transition-opacity`, {'text-gray-400': props.item.isCompleted } )}>
         <div>
           <Text size="3" className={classNames({ 'line-through': props.item.isCompleted }, 'flex items-center break-all')}>{props.item.name}</Text>
           {isExpanded && <Text className='mt-1.5 text-xs block'>{props.item.notes}</Text>}
