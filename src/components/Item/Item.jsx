@@ -36,9 +36,9 @@ const Item = (props) => {
 
   return (
     <div>
-      <div className={classNames('flex justify-between gap-2.5 p-2.5 bg-gray-50 rounded-md mb-2.5 duration-700 transition-opacity', {'text-gray-400': props.item.isCompleted } )}>
+      <div className={classNames('min-w-[280px] md:w-lg flex justify-between gap-2.5 p-2.5 bg-gray-50 rounded-md mb-2.5 duration-700 transition-opacity', {'text-gray-400': props.item.isCompleted } )}>
         <div>
-          <Text size="3" className={classNames({ 'line-through': props.item.isCompleted }, 'flex items-center min-w-28 break-all')}>{props.item.name}</Text>
+          <Text size="3" className={classNames({ 'line-through': props.item.isCompleted }, 'flex items-center break-all')}>{props.item.name}</Text>
           {isExpanded && <Text className='mt-1.5 text-xs block'>{props.item.notes}</Text>}
         </div>
         <div>
