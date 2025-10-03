@@ -4,7 +4,6 @@ import { addItemReq } from "../../store/itemsSlice";
 import { Button, TextField, Callout } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import Spinner from "../Spinner/Spinner";
-import styles from "./AddItem.module.css";
 import StyleConstants from '../../constants/styles';
 
 const AddItem = () => {
@@ -42,13 +41,14 @@ const AddItem = () => {
           value={inputValue}
           placeholder="Pop in the task name"
           onChange={handleInputChange}
-          className={styles.input}
+          className='flex-1'
         ></TextField.Root>
 
         <Button
           type="submit"
           onClick={handleAddItem}
           disabled={disableInputValue}
+          className="min-w-[83px]"
         >
           {isItemBeingAdded ? (
             <Spinner customClassName="svg-sm" />
@@ -59,8 +59,8 @@ const AddItem = () => {
           )}
         </Button>
       </form>
-      {(limitReached) &&
-        <div className={styles.calloutContainer}>
+      {limitReached &&
+        <div className='flex justify-center m-3.5'>
           <Callout.Root size="1">
             <Callout.Icon>
               <InfoCircledIcon />
