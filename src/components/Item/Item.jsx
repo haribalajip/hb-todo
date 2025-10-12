@@ -3,7 +3,7 @@ import { deleteItemReq, toggleCompleteReq, updateItem } from "../../store/itemsS
 import { useState } from "react";
 import { ChevronDownIcon, IconButton } from "@radix-ui/themes";
 import { Tooltip, Text } from "@radix-ui/themes";
-import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon, Pencil1Icon } from "@radix-ui/react-icons";
+import { CheckIcon, Cross2Icon, CounterClockwiseClockIcon, DoubleArrowDownIcon } from "@radix-ui/react-icons";
 import Spinner from "../Spinner/Spinner";
 import { format } from 'date-fns';
 import Modal from '../Modal/Modal';
@@ -36,9 +36,16 @@ const Item = (props) => {
 
   return (
     <div>
-      <div className={classNames(`group flex justify-between gap-2.5 p-2.5 bg-gray-50 rounded-md mb-2.5 duration-700 transition-opacity`, {'text-gray-400': props.item.isCompleted } )}>
+      <div className={classNames(`flex justify-between gap-2.5 p-2.5 bg-gray-50 rounded-md mb-2.5 duration-700 transition-opacity`, {'text-gray-400': props.item.isCompleted } )}>
         <div>
-          <Text size="3" className={classNames({ 'line-through': props.item.isCompleted }, 'flex items-center break-all')}>{props.item.name}</Text>
+           <Modal>
+            <Modal.Trigger>
+              <Text size="3" className={classNames({ 'line-through': props.item.isCompleted }, 'flex items-center break-all hover:text-sky-600')}>{props.item.name}</Text>
+            </Modal.Trigger>
+            <Modal.Content>
+              <EditForm item={props.item} saveItem={saveItemEdits}/>
+            </Modal.Content>
+          </Modal>
           {isExpanded && <Text className='mt-1.5 text-xs block'>{props.item.notes}</Text>}
         </div>
         <div>
@@ -48,20 +55,20 @@ const Item = (props) => {
             </Tooltip>
           }
           {isLoading ? (
-            <Spinner customClassName={classNames('svg-sm flex self-center ml-0.25 h-[27px]')} />
+            <Spinner customClassName={classNames('svg-sm flex self-center ml-0.25 h-[24px]')} />
           ) : (
             //  Actions section
-            <span className={classNames("grid items-center grid-cols-3 group-hover:grid gap-2.5 text-blue-600", { "grid-cols-4": props.item.notes })}> 
+            <span className={classNames("flex items-center text-blue-600")}> 
               {props.item.notes && (
                 <Tooltip content={isExpanded ? 'Collapse' : 'Expand'}>
-                  <button variant="ghost" onClick={toggleExpansion} className={classNames({ 'rotate180': isExpanded }, 'm-0 w-5 hover:bg-blue-100 rounded flex justify-center [&>svg]:w-[15px] [&>svg]:h-[15px]')}>
-                    <ChevronDownIcon />
+                  <button variant="ghost" onClick={toggleExpansion} className={classNames({ 'rotate180': isExpanded }, 'm-0 w-5 hover:bg-blue-100 rounded flex justify-center p-1 gap-0.5 [&>svg]:w-[16px] [&>svg]:h-[16px]')}>
+                    <DoubleArrowDownIcon />
                   </button>
                 </Tooltip>
               )}
               <Tooltip content='Delete'>
                 <button
-                  className='hover:bg-blue-100 rounded flex justify-center [&>svg]:w-[15px] [&>svg]:h-[15px]'
+                  className='hover:bg-blue-100 rounded flex justify-center p-1 gap-0.5 [&>svg]:w-[16px] [&>svg]:h-[16px]'
                   variant="ghost"
                   onClick={deleteItem.bind(this, props.item.id)}
                 >
@@ -70,21 +77,11 @@ const Item = (props) => {
               </Tooltip>
 
                 {/* Opens a Task edit modal */}
-                <Modal>
-                  <Modal.Trigger>
-                    <Tooltip content='Edit'>
-                      <button variant="ghost" className='hover:bg-blue-100 rounded flex justify-center [&>svg]:w-[15px] [&>svg]:h-[15px] relative top-[1px]'><Pencil1Icon /></button>
-                    </Tooltip>
-                  </Modal.Trigger>
-                  <Modal.Content>
-                    <EditForm item={props.item} saveItem={saveItemEdits}/>
-                  </Modal.Content>
-                </Modal>
               
               <Tooltip content={props.item.isCompleted ? 'Mark incomplete' : 'Mark complete'}>
                 <button
                   variant="ghost"
-                  className="hover:bg-blue-100 rounded flex justify-center [&>svg]:w-[15px] [&>svg]:h-[15px]"
+                  className="hover:bg-blue-100 rounded flex justify-center p-1 gap-0.5 [&>svg]:w-[16px] [&>svg]:h-[16px]"
                   onClick={markAsComplete.bind(this, props.item, !props.item.isCompleted)}
                 >
                   {props.item.isCompleted ? (
