@@ -9,22 +9,6 @@
   margin-left: 10px;
 }
 
-/* Flex */
-.flex {
-  display: flex;
-}
-
-.flex--align-center {
-  align-items: center;
-}
-
-.flex--column {
-  flex-direction: column;
-}
-
-.flex--space-between {
-  justify-content: space-between;
-}
 
 /* Typography */
 .text-muted {
