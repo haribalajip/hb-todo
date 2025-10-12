@@ -6,7 +6,7 @@ const TopBar = (props) => {
   return (
     <div>
       <div className={styles.TopBar}>
-        <div className="flex flex--align-center">
+        <div className="flex items-center">
           <MixIcon width="25" height="25"></MixIcon>
           <Heading size="6" className="mg-l-10">Chronos</Heading>
         </div>
