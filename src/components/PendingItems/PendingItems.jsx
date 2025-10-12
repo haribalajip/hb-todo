@@ -6,6 +6,8 @@ import styles from "./PendingItems.module.css";
 import { compareDesc, format } from 'date-fns';
 import Item from "../Item/Item";
 import { Heading } from "@radix-ui/themes";
+import classNames from "classnames";
+
 const PendingItems = () => {
   const dispatch = useDispatch();
 
@@ -23,7 +25,7 @@ const PendingItems = () => {
   
   const isLoading = useSelector((state) => state.todoListItems.isListLoading);
   return (
-    <div className="todo-list">
+    <div className='todo-list'>
       {isLoading ? (
         <Spinner />
       ) : items.length === 0 ? (
@@ -32,7 +34,7 @@ const PendingItems = () => {
           <img src="icons/dreamer.svg" alt="" className={styles.emptyState} />
         </article>
       ) : (
-        <div>
+        <div className="w-full">
           {Object.keys(groupedItems).sort(compareDesc).map(key => {
             return (
               <div className={styles.listGroup} key={key}>

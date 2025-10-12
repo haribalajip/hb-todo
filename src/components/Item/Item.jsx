@@ -9,7 +9,6 @@ import { format } from 'date-fns';
 import Modal from '../Modal/Modal';
 import EditForm from "./EditForm/EditForm";
 import classNames from "classnames";
-import StyleConstants from '../../constants/styles';
 
 const Item = (props) => {
   const dispatch = useDispatch();
@@ -37,7 +36,7 @@ const Item = (props) => {
 
   return (
     <div>
-      <div className={classNames(`${StyleConstants.itemWidth} flex justify-between gap-2.5 p-2.5 bg-gray-50 rounded-md mb-2.5 duration-700 transition-opacity`, {'text-gray-400': props.item.isCompleted } )}>
+      <div className={classNames(`group flex justify-between gap-2.5 p-2.5 bg-gray-50 rounded-md mb-2.5 duration-700 transition-opacity`, {'text-gray-400': props.item.isCompleted } )}>
         <div>
           <Text size="3" className={classNames({ 'line-through': props.item.isCompleted }, 'flex items-center break-all')}>{props.item.name}</Text>
           {isExpanded && <Text className='mt-1.5 text-xs block'>{props.item.notes}</Text>}
@@ -52,28 +51,29 @@ const Item = (props) => {
             <Spinner customClassName={classNames('svg-sm flex self-center ml-0.25 h-[27px]')} />
           ) : (
             //  Actions section
-            <span className={classNames("grid items-baseline grid-cols-3", { "grid-cols-4": props.item.notes })}> 
+            <span className={classNames("grid items-center grid-cols-3 group-hover:grid gap-2.5 text-blue-600", { "grid-cols-4": props.item.notes })}> 
               {props.item.notes && (
                 <Tooltip content={isExpanded ? 'Collapse' : 'Expand'}>
-                  <IconButton variant="ghost" onClick={toggleExpansion} className={classNames({ 'rotate180': isExpanded }, 'm-0 w-5')}>
+                  <button variant="ghost" onClick={toggleExpansion} className={classNames({ 'rotate180': isExpanded }, 'm-0 w-5 hover:bg-blue-100 rounded flex justify-center [&>svg]:w-[15px] [&>svg]:h-[15px]')}>
                     <ChevronDownIcon />
-                  </IconButton>
+                  </button>
                 </Tooltip>
               )}
               <Tooltip content='Delete'>
-                <IconButton
+                <button
+                  className='hover:bg-blue-100 rounded flex justify-center [&>svg]:w-[15px] [&>svg]:h-[15px]'
                   variant="ghost"
                   onClick={deleteItem.bind(this, props.item.id)}
                 >
                   <Cross2Icon />
-                </IconButton>
+                </button>
               </Tooltip>
 
                 {/* Opens a Task edit modal */}
                 <Modal>
                   <Modal.Trigger>
                     <Tooltip content='Edit'>
-                      <IconButton variant="ghost" className='m-0 w-5 relative top-[-2px]'><Pencil1Icon /></IconButton>
+                      <button variant="ghost" className='hover:bg-blue-100 rounded flex justify-center [&>svg]:w-[15px] [&>svg]:h-[15px] relative top-[1px]'><Pencil1Icon /></button>
                     </Tooltip>
                   </Modal.Trigger>
                   <Modal.Content>
@@ -82,9 +82,9 @@ const Item = (props) => {
                 </Modal>
               
               <Tooltip content={props.item.isCompleted ? 'Mark incomplete' : 'Mark complete'}>
-                <IconButton
+                <button
                   variant="ghost"
-                  className="m-0 w-5"
+                  className="hover:bg-blue-100 rounded flex justify-center [&>svg]:w-[15px] [&>svg]:h-[15px]"
                   onClick={markAsComplete.bind(this, props.item, !props.item.isCompleted)}
                 >
                   {props.item.isCompleted ? (
@@ -93,7 +93,7 @@ const Item = (props) => {
                   ):
                     <CheckIcon />
                   }
-                </IconButton>
+                </button>
               </Tooltip>
             </span>
           )}

@@ -4,7 +4,6 @@ import { addItemReq } from "../../store/itemsSlice";
 import { Button, TextField, Callout } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import Spinner from "../Spinner/Spinner";
-import StyleConstants from '../../constants/styles';
 
 const AddItem = () => {
   const MAX_LIMIT = 20;
@@ -36,7 +35,7 @@ const AddItem = () => {
 
   return (
     <div>
-      <form className={`${StyleConstants.itemWidth} flex justify-self-center gap-2.5 mb-5`} onSubmit={handleAddItem}>
+      <form className='flex justify-self-center gap-2.5 mb-5 w-full' onSubmit={handleAddItem}>
         <TextField.Root
           value={inputValue}
           placeholder="Pop in the task name"
