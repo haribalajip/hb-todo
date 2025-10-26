@@ -12,7 +12,7 @@ const LogoutUI = () => {
     <>
       <Button variant="outline" className="logoutBtn" onClick={logout}>
         Logout
-        { window.user?.photoURL && <Avatar size="1" radius="full" src={window.user.photoURL} />}
+        { localStorage.getItem('photoURL') && <Avatar size="1" radius="full" src={localStorage.getItem('photoURL')} />}
       </Button>
     </>
   );

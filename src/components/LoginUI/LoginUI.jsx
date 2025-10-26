@@ -26,8 +26,8 @@ const LoginUI = () => {
       const auth = getAuth();
       let result = await signInWithPopup(auth, provider);
       const user = result.user;
-      window.user = { photoURL: user.photoURL };
       localStorage.setItem("uid", user.uid);
+      localStorage.setItem("photoURL", user.photoURL);
       navigate("/items");
     }
   };
